@@ -4,8 +4,8 @@ FROM node:18-alpine AS builder
 # Set folder kerja
 WORKDIR /app
 
-# Copy package.json dan package-lock.json (karena Anda pakai npm)
-COPY package.json package-lock.json ./
+# Copy package.json dan 
+COPY package.json  ./
 
 # Install dependencies dengan npm
 RUN npm install
@@ -21,7 +21,7 @@ RUN npm run build
 FROM nginx:1.25-alpine
 
 # Copy HANYA folder 'build' yang sudah jadi dari tahap 'builder' ke folder Nginx
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Ekspos port 80 (port default Nginx)
 EXPOSE 80
