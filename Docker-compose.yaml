@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  # Ini nama layanan Anda
+  react-bank-app:
+    # Perintahkan Compose untuk mem-build image dari Dockerfile di folder ini
+    build: .
+    
+    # Petakan port 8080 di komputer Anda ke port 80 di dalam container
+    # Anda bisa akses di http://localhost:8080
+    ports:
+      - "8080:80"
+      
+    # Selalu restart container jika gagal
+    restart: always
